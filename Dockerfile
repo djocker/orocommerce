@@ -6,7 +6,7 @@ ENV MEMORY_LIMIT_CLI=2048
 ENV MEMORY_LIMIT_FPM=2048
 ENV UPLOAD_LIMIT=256
 ENV GIT_URI=https://github.com/orocommerce/orocommerce-application
-ENV GIT_REF=tags/1.0.0-alpha.3
+ENV GIT_REF=tags/1.0.0-alpha.4
 
 RUN install-application.sh
 
