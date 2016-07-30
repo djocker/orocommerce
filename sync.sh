@@ -25,15 +25,17 @@ USER www-data
 # If you want to use ssh don't forget to provide ssh key via build arg directive
 ENV GIT_URI=%GIT_URI%
 
-# branch name or tag 
+# branch name or tag
 # master - for master branch
-# tags/1.9.1 - for 1.9.1 tag 
+# tags/1.9.1 - for 1.9.1 tag
 ENV GIT_REF=%GIT_REF%
 
 RUN install-application.sh
 
-USER root
-CMD ["run.sh"]
+VOLUME ["/var/www"]
+
+CMD ["/bin/bash", "-c", "while : ; do sleep 2; done"]
+
 EOF
 
 dockerfile=${dockerfile//%GIT_URI%/${APP_GIT_URI}}
