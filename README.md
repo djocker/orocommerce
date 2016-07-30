@@ -1,4 +1,4 @@
-# OROCommerce source code image
+# OROCommerce DockerImage
 The docker image contains source code of OROCommerce application.
 This image are used as part of docker stack (see compose configs).
 
