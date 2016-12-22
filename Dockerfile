@@ -10,8 +10,6 @@ ENV GIT_URI=https://github.com/orocommerce/orocommerce-application
 # tags/1.9.1 - for 1.9.1 tag
 ENV GIT_REF=tags/1.0.0-beta.5
 
-RUN composer global require "fxp/composer-asset-plugin:~1.2"
-
 RUN install-application.sh
 
 VOLUME ["/var/www"]
