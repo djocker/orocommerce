@@ -13,8 +13,6 @@ This image is used as part of docker stack (see compose configs).
 
 ### OROCommerce stack with automated installation
 
-For more information [see compose config](./compose/webinstall/docker-compose.yml)
-
 Run containers in attached mode
 
 ```
@@ -42,8 +40,6 @@ $ docker-compose -f docker-compose-auto.yml down
 ```
 
 ### OROCommerce stack with web installation
-
-For more information [see compose config](./compose/webinstall/docker-compose.yml)
 
 Run containers in attached mode
 
