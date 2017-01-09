@@ -1,4 +1,4 @@
-# OROCommerce Docker Image
+# OroCommerce Docker Image
 [![GitHub tag](https://img.shields.io/github/tag/djocker/orocommerce.svg?maxAge=2592000)](https://hub.docker.com/r/djocker/orocommerce/tags/) [![Docker Pulls](https://img.shields.io/docker/pulls/djocker/orocommerce.svg?maxAge=2592000)](https://hub.docker.com/r/djocker/orocommerce/)  
 
 The docker image with source code of OroCommerce application.
@@ -11,7 +11,7 @@ This image is used as part of docker stack (see compose configs).
 
 ## Usage
 
-### OROCommerce stack with automated installation
+### OroCommerce stack with automated installation
 
 Run containers in attached mode
 
@@ -39,7 +39,7 @@ Remove containers
 $ docker-compose -f docker-compose-auto.yml down
 ```
 
-### OROCommerce stack with web installation
+### OroCommerce stack with web installation
 
 Run containers in attached mode
 
