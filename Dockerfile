@@ -8,7 +8,7 @@ ARG GIT_URI="git@github.com:djocker/orocommerce.git"
 # branch name or tag
 # master - for master branch
 # tags/1.9.1 - for 1.9.1 tag
-ARG GIT_REF="tags/1.0.0-rc.2"
+ARG GIT_REF="tags/1.0.0"
 
 RUN install-application.sh
 
