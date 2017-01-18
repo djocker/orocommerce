@@ -3,7 +3,7 @@ USER www-data
 
 # HTTPS or SSH
 # If you want to use ssh don't forget to provide ssh key via build arg directive
-ARG GIT_URI="git@github.com:djocker/orocommerce.git"
+ARG GIT_URI="/home/scherepanov/watcher/orocommerce/git-source"
 
 # branch name or tag
 # master - for master branch
