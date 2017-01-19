@@ -1,5 +1,5 @@
 # OroCommerce Docker Image
-[![GitHub tag](https://img.shields.io/github/tag/djocker/orocommerce.svg?maxAge=2592000)](https://hub.docker.com/r/djocker/orocommerce/tags/) [![Docker Pulls](https://img.shields.io/docker/pulls/djocker/orocommerce.svg?maxAge=2592000)](https://hub.docker.com/r/djocker/orocommerce/)  
+[![GitHub tag](https://img.shields.io/github/tag/djocker/orocommerce.svg)](https://hub.docker.com/r/djocker/orocommerce/tags/) [![Docker Pulls](https://img.shields.io/docker/pulls/djocker/orocommerce.svg)](https://hub.docker.com/r/djocker/orocommerce/)  
 
 The docker image with source code of OroCommerce application.
 This image is used as part of docker stack (see compose configs).
@@ -10,6 +10,20 @@ This image is used as part of docker stack (see compose configs).
 2. [Docker Compose](http://docs.docker.com/compose)
 
 ## Usage
+
+Checkout sources
+
+```
+$ git clone https://github.com/djocker/orocommerce.git
+```
+
+Going to directory  
+
+```
+$ cd orocommerce
+```
+
+
 
 ### OroCommerce stack with automated installation
 
