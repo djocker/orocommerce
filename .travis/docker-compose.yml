@@ -18,6 +18,10 @@ services:
       - MYSQL_PASSWORD=orocommerce
     volumes_from:
       - data
+    networks:
+      default:
+        aliases:
+          - db
   mail:
     container_name: orocommerce_mail
     image: catatnight/postfix
@@ -26,22 +30,37 @@ services:
     environment:
       - maildomain=localhost
       - smtp_user=user@localhost:password
+    networks:
+      default:
+        aliases:
+          - mail
   minion:
     container_name: orocommerce_minion
     image: djocker/oromono
     links:
       - db
       - mail
+    expose:
+      - "80"
+      - "8080"
     ports:
       - "3080:80"
-      - "3088:8080"
+      - "8080:8080"
+    extra_hosts:
+     - minion:127.0.0.1
+    volumes:
+      - ./behat.yml:/var/www/behat.yml
     volumes_from:
       - data
       - source_code
+    networks:
+      default:
+        aliases:
+          - minion
     environment:
       - CMD_INIT_BEFORE=
       - CMD_INIT_CLEAN=
-      - CMD_INIT_INSTALLED=runuser -s /bin/sh -c 'for cmd in `echo "fos:js-routing:dump oro:localization:dump oro:assets:install assetic:dump oro:translation:dump oro:requirejs:build"`; do /var/www/app/console --env=prod $$cmd; done' www-data
+      - CMD_INIT_INSTALLED=
       - CMD_INIT_AFTER=
       - APP_DB_DRIVER=pdo_mysql
       - APP_DB_HOST=db
@@ -56,7 +75,22 @@ services:
       - APP_MAILER_ENCRYPTION=
       - APP_MAILER_USER=user
       - APP_MAILER_PASSWORD=password
-      - APP_WEBSOCKET_BACKEND_PORT=8080
-      - APP_WEBSOCKET_FRONTEND_PORT=3088
-      - APP_SECRET=123456789
+      - APP_WEBSOCKET_BACKEND_PORT=8080  
+      - APP_WEBSOCKET_FRONTEND_PORT=8080  
+      - APP_SECRET=123456789  
       - APP_IS_INSTALLED=
+  phantomjs:
+    container_name: orocommerce_phantomjs
+    image: wernight/phantomjs
+    command: phantomjs --webdriver=8910
+    expose:
+      - "8910"
+    links:
+      - minion
+    networks:
+      default:
+        aliases:
+          - phantomjs
+    volumes_from:
+      - data
+      - source_code

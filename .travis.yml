@@ -1,0 +1,37 @@
+dist: xenial
+sudo: required
+language: bash
+
+services:
+  - docker
+
+branches:
+  only:
+    - master
+    - dev
+
+before_install:
+  - "docker info"
+  - "docker-compose --version"
+
+install:
+  - "docker build -t djocker/orocommerce $TRAVIS_BUILD_DIR"
+  - "docker-compose -f $TRAVIS_BUILD_DIR/.travis/docker-compose.yml up -d"
+  - "until docker logs orocommerce_minion 2>&1 | grep 'Application is not installed!'; do sleep 5; done"
+  - "docker exec orocommerce_minion runuser -s /bin/sh -c 'composer --working-dir=/var/www install --dev' www-data"
+  - "docker exec orocommerce_minion runuser -s /bin/sh -c 'cp /var/www/app/config/parameters.yml /var/www/app/config/parameters_test.yml' www-data"
+  - "docker exec orocommerce_minion runuser -s /bin/sh -c '/var/www/app/console oro:install --env='$SYMFONY_ENV' --no-interaction --timeout 3600 --force --drop-database --user-name=admin --user-firstname=John --user-lastname=Doe --user-password=admin --user-email=johndoe@example.com --organization-name=Acme --application-url=http://minion/' www-data"
+  - "docker exec orocommerce_minion supervisorctl stop app-cron"
+  - "docker exec orocommerce_minion supervisorctl stop mq-consumer"
+  
+matrix:
+  include:
+  - env: SYMFONY_ENV=prod
+    script: 
+      - "docker exec orocommerce_minion runuser -s /bin/sh -c 'cd /var/www; /var/www/vendor/behat/behat/bin/behat -v -s OroUserBundle' www-data"
+  - env: SYMFONY_ENV=test
+    script: 
+      - "docker exec orocommerce_minion runuser -s /bin/sh -c 'cd /var/www; /var/www/vendor/phpunit/phpunit/phpunit -c /var/www/phpunit.xml.dist --testsuite unit' www-data"
+
+after_failure:
+  - docker logs orocommerce_minion
