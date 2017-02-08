@@ -26,12 +26,28 @@ services:
     environment:
       - maildomain=localhost
       - smtp_user=user@localhost:password
+  rabbitmq:
+    container_name: orocommerce_rabbitmq
+    image: rabbitmq:3.6.6-management
+    expose:
+      - "5671"
+      - "5672"
+      - "15671"
+      - "15672"
+    ports:
+      - "3072:15672"
+      - "3071:15671"
+    environment:
+      - RABBITMQ_DEFAULT_USER=oro
+      - RABBITMQ_DEFAULT_PASS=oro
+      - RABBITMQ_DEFAULT_VHOST=oro
   minion:
     container_name: orocommerce_minion
     image: djocker/oromono
     links:
       - db
       - mail
+      - rabbitmq
     ports:
       - "3080:80"
       - "3088:8080"
@@ -60,3 +76,5 @@ services:
       - APP_WEBSOCKET_FRONTEND_PORT=3088
       - APP_SECRET=123456789
       - APP_IS_INSTALLED=
+      - MESSAGE_QUEUE_TRANSPORT=amqp
+      - MESSAGE_QUEUE_TRANSPORT_CONFIG={ host: 'rabbitmq', port: '5672', user: 'oro', password: 'oro', vhost: 'oro' }
