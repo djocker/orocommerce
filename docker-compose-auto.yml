@@ -76,5 +76,5 @@ services:
       - APP_WEBSOCKET_FRONTEND_PORT=3088
       - APP_SECRET=123456789
       - APP_IS_INSTALLED=
-      - MESSAGE_QUEUE_TRANSPORT=amqp
-      - MESSAGE_QUEUE_TRANSPORT_CONFIG={ host: 'rabbitmq', port: '5672', user: 'oro', password: 'oro', vhost: 'oro' }
+      - MESSAGE_QUEUE_TRANSPORT=dbal
+      - MESSAGE_QUEUE_TRANSPORT_CONFIG='~'
