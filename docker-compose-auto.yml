@@ -32,6 +32,7 @@ services:
     links:
       - db
       - mail
+      - rabbitmq
     ports:
       - "3080:80"
       - "3088:8080"
