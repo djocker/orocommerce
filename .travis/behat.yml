@@ -1,5 +1,5 @@
 imports:
-  - /var/www/vendor/oro/platform/src/Oro/Bundle/TestFrameworkBundle/Resources/config/behat.yml.dist
+  - ../../package/platform/src/Oro/Bundle/TestFrameworkBundle/Resources/config/behat.yml.dist
 
 default: &default
     gherkin:
@@ -8,18 +8,23 @@ default: &default
     extensions:
         Behat\MinkExtension:
             base_url: 'http://minion/'
-            default_session: 'first_session'
-            sessions:
-                first_session:
-                    oroSelenium2:
-                        wd_host: "http://phantomjs:8910/wd/hub"
         Behat\Symfony2Extension: ~
         Oro\Bundle\TestFrameworkBundle\Behat\ServiceContainer\OroTestFrameworkExtension:
             reference_initializer_class: Oro\Bundle\ApplicationBundle\Tests\Behat\ReferenceRepositoryInitializer
             shared_contexts:
-                - Oro\Bundle\ApplicationBundle\Tests\Behat\Context\CommerceMainContext
-                - Oro\Bundle\SalesBundle\Tests\Behat\Context\SalesContext
-                - Oro\Bundle\ShippingBundle\Tests\Behat\Context\SingleCurrencyContext
+                - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+                - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\FixturesContext
+                - OroActivityListBundle::ActivityContext
+                - OroDataGridBundle::GridContext
+                - OroSecurityBundle::ACLContext
+                - OroSearchBundle::SearchContext
+                - OroImportExportBundle::ImportExportContext:
+                    - '@oro_entity.entity_alias_resolver'
+                    - '@oro_importexport.processor.registry'
+                - OroAddressBundle::AddressContext
+                - OroApplicationBundle::CommerceMainContext
+                - OroSalesBundle::SalesContext
+                - OroShippingBundle::SingleCurrencyContext
             application_suites:
                 - OroApplicationBundle
                 - OroUserBundle
