@@ -23,6 +23,8 @@ install:
   - "docker exec orocommerce_minion runuser -s /bin/sh -c '/var/www/app/console oro:install --env='$SYMFONY_ENV' --no-interaction --timeout 3600 --force --drop-database --user-name=admin --user-firstname=John --user-lastname=Doe --user-password=admin --user-email=johndoe@example.com --organization-name=Acme --application-url=http://minion/' www-data"
   - "docker exec orocommerce_minion supervisorctl stop app-cron"
   - "docker exec orocommerce_minion supervisorctl stop mq-consumer"
+  # Fix wrong path in behat config
+  - "docker exec orocommerce_minion runuser -s /bin/sh -c 'sed -ie \"s/\.\.\/\.\.\/package\/platform/\/var\/www\/vendor\/oro\/platform/g\"  /var/www/behat.yml.dist' www-data"
   
 matrix:
   include:
