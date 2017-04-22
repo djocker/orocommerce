@@ -24,7 +24,7 @@ install:
   - "docker exec app_minion supervisorctl stop app-cron"
   - "docker exec app_minion supervisorctl stop mq-consumer"
   # Fix wrong path in behat config
-  - "docker exec app_minion runuser -s /bin/sh -c 'sed -ie \"s/\.\.\/\.\.\/package\/platform/\/var\/www\/vendor\/oro\/platform/g\"  /var/www/behat.yml.dist' www-data"
+  - docker exec app_minion runuser -s /bin/sh -c 'sed -ie "s/\.\.\/\.\.\/package\/platform/\/var\/www\/vendor\/oro\/platform/g"  /var/www/behat.yml.dist' www-data
   
 matrix:
   include:
