@@ -8,7 +8,7 @@ ARG GIT_URI="https://github.com/orocommerce/orocommerce-application.git"
 # branch name or tag
 # master - for master branch
 # tags/1.9.1 - for 1.9.1 tag
-ARG GIT_REF="tags/1.1.3"
+ARG GIT_REF="tags/1.2.0"
 
 RUN install-application.sh
 
