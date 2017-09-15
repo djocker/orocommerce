@@ -32,7 +32,6 @@ services:
     links:
       - db
       - mail
-      - rabbitmq
     ports:
       - "3080:80"
       - "3088:8080"
@@ -41,7 +40,7 @@ services:
       - source_code
     environment:
       - CMD_INIT_BEFORE=
-      - CMD_INIT_CLEAN=runuser -s /bin/sh -c '/usr/bin/php /var/www/app/console --env=prod oro:install --no-interaction --timeout 3600 --timeout 3600 --force --drop-database --user-name=admin --user-firstname=John --user-lastname=Doe --user-password=admin1111 --user-email=johndoe@example.com --organization-name=Acme --application-url=http://localhost:3080/' www-data
+      - CMD_INIT_CLEAN=runuser -s /bin/sh -c '/usr/bin/php /var/www/app/console --env=prod oro:install --no-interaction --timeout 3600 --timeout 3600 --drop-database --user-name=admin --user-firstname=John --user-lastname=Doe --user-password=admin1111 --user-email=johndoe@example.com --organization-name=Acme --application-url=http://localhost:3080/' www-data
       - CMD_INIT_INSTALLED=runuser -s /bin/sh -c 'for cmd in `echo "fos:js-routing:dump oro:localization:dump oro:assets:install assetic:dump oro:translation:dump oro:requirejs:build"`; do /var/www/app/console --env=prod $$cmd; done' www-data
       - CMD_INIT_AFTER=
       - APP_DB_DRIVER=pdo_mysql
