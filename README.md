@@ -1,3 +1,5 @@
+# DEPRICATED! The solution has been replaced by the following tool: https://github.com/digitalspacestdio/homebrew-docker-compose-oroplatform
+
 # OroCommerce Docker Image
 [![GitHub Tag](https://img.shields.io/github/tag/djocker/orocommerce.svg)](https://hub.docker.com/r/djocker/orocommerce/tags/) 
 [![Layers](https://images.microbadger.com/badges/image/djocker/orocommerce.svg)](https://microbadger.com/images/djocker/orocommerce "Get your own image badge on microbadger.com") 
