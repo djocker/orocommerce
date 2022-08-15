@@ -1,4 +1,4 @@
-# DEPRICATED! The solution has been replaced by the following tool: https://github.com/digitalspacestdio/homebrew-docker-compose-oroplatform
+# DEPRECATED! The solution has been replaced by the following tool: https://github.com/digitalspacestdio/homebrew-docker-compose-oroplatform
 
 # OroCommerce Docker Image
 [![GitHub Tag](https://img.shields.io/github/tag/djocker/orocommerce.svg)](https://hub.docker.com/r/djocker/orocommerce/tags/) 
